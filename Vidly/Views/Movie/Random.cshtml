@@ -1,0 +1,40 @@
+﻿@using Vidly.Models
+@using Vidly.ViewModel
+@*@Model Vidly.Models.Movie*@   @*Old model when we just passing movie*@
+@model Vidly.ViewModel.RandomMovieViewModel 
+@*We are passing model of type randommovieviewmodel*@
+
+
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{ 
+    //here we define any c# code we want to use
+    var className = Model.Customers.Count > 3 ? "Popular" : null;
+}
+
+@*old code when we are having movie as only model*@
+@*<h2>@(((Movie)ViewData["Movie"]).Name)</h2>need to typecast the viewdata to movie model and need to import the model also*@
+@*<h2>@ViewBag.Movie</h2>*@
+@*<h2>@Model.Name</h2>*@
+
+@*our model have now two properties, Movie and customer*@
+<h2 class="@className">@Model.Movie.Name</h2>  @*deriving className from the section where we define c# code*@
+@*<h2>@Model.Movie.Id</h2>*@
+@if (Model.Customers.Count == 0)
+{
+    <h2>Nothing to show in the customers</h2>
+}
+else
+{
+<ul>
+    @foreach (var customer in Model.Customers)
+    {
+    <li>@customer.Name</li>
+    @*<li>@customer.Id</li>*@
+    }
+</ul>
+}
