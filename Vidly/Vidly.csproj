@@ -183,11 +183,16 @@
     <Compile Include="Migrations\202106240720045_AddIsSuscribedToCustomer.Designer.cs">
       <DependentUpon>202106240720045_AddIsSuscribedToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106240730287_AddMembershipType.cs" />
+    <Compile Include="Migrations\202106240730287_AddMembershipType.Designer.cs">
+      <DependentUpon>202106240730287_AddMembershipType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -274,6 +279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106240720045_AddIsSuscribedToCustomer.resx">
       <DependentUpon>202106240720045_AddIsSuscribedToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106240730287_AddMembershipType.resx">
+      <DependentUpon>202106240730287_AddMembershipType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
