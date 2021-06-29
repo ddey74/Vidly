@@ -18,5 +18,7 @@ namespace Vidly.Models
         public bool IsSuscribedToNewsLetter { get; set; }
         public MembershipType MembershipType { get; set; }//this property will help to have association with MembershipType class model
         public byte MembershipTypeID { get; set; }//will be used as a forign key for MembershipType Id property
+
+        public DateTime BirthDate { get; set; }
     }
 }
