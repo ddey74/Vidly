@@ -211,6 +211,10 @@
     <Compile Include="Migrations\202106291617265_UpdatedBirthdateFieldOfCustomerAsNullable.Designer.cs">
       <DependentUpon>202106291617265_UpdatedBirthdateFieldOfCustomerAsNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106291623110_UpdatedNameFieldAsRequiredInMembershipType.cs" />
+    <Compile Include="Migrations\202106291623110_UpdatedNameFieldAsRequiredInMembershipType.Designer.cs">
+      <DependentUpon>202106291623110_UpdatedNameFieldAsRequiredInMembershipType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -324,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106291617265_UpdatedBirthdateFieldOfCustomerAsNullable.resx">
       <DependentUpon>202106291617265_UpdatedBirthdateFieldOfCustomerAsNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106291623110_UpdatedNameFieldAsRequiredInMembershipType.resx">
+      <DependentUpon>202106291623110_UpdatedNameFieldAsRequiredInMembershipType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
