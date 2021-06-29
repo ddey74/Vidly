@@ -11,6 +11,7 @@ namespace Vidly.Models
         public byte DurationInMonth { get; set; }
         public byte DiscountRate { get; set; }
         public byte ID {get; set;}
+        public string Name { get; set; }
 
         //Need to have an assosciation with customer class
     }
