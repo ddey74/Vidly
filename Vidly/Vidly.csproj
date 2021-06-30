@@ -215,9 +215,14 @@
     <Compile Include="Migrations\202106291623110_UpdatedNameFieldAsRequiredInMembershipType.Designer.cs">
       <DependentUpon>202106291623110_UpdatedNameFieldAsRequiredInMembershipType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106301544274_AddMovieAddGenre.cs" />
+    <Compile Include="Migrations\202106301544274_AddMovieAddGenre.Designer.cs">
+      <DependentUpon>202106301544274_AddMovieAddGenre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -331,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106291623110_UpdatedNameFieldAsRequiredInMembershipType.resx">
       <DependentUpon>202106291623110_UpdatedNameFieldAsRequiredInMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106301544274_AddMovieAddGenre.resx">
+      <DependentUpon>202106301544274_AddMovieAddGenre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
