@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModel;
+using System.Data.Entity;
 
 namespace Vidly.Controllers
 {
@@ -73,10 +74,21 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
-            var movies = GetMovies();//old code depending on static value for data
-            //var movies=_context.
+            //var movies = GetMovies();//old code depending on static value for data
+            var movies = _context.Movies.Include(m => m.Genre).ToList();//for include() please include namespace using System.Data.Entity;
             return View(movies);
         }
+
+        public ActionResult Details(int id)
+        {
+            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(movie);
+        }
+
         private IEnumerable<Movie> GetMovies()
         {
             return new List<Movie>
