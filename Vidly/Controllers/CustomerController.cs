@@ -46,6 +46,12 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
+        //Added to create a new form and add Customer
+        public ActionResult New()
+        {
+            return View();
+        }
+
         //This method will return all the Customers
         private IEnumerable<Customer> GetCustomers()
         {
