@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using System.Data.Entity;
+using Vidly.ViewModel;
 
 namespace Vidly.Controllers
 {
@@ -49,7 +50,17 @@ namespace Vidly.Controllers
         //Added to create a new form and add Customer
         public ActionResult New()
         {
-            return View();
+            //adding to get the membership type from database and will show that on view
+            //added DbSet<membershipType> in the identity model or we do not have the access
+            var membershipTypes = _context.MembershipTypes.ToList();
+            //we can pass this membershiptype but later we may need to pass customer details to the view
+            //so we need to have a custom viewmodel
+
+            var viewModel = new NewCustomerViewModel()
+            {
+                MembershipType = membershipTypes
+            };
+            return View(viewModel);//Passing this view model to view so View of New controller will change
         }
 
         //This method will return all the Customers

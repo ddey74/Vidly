@@ -1,4 +1,6 @@
-﻿@model Vidly.Models.Customer
+﻿@model Vidly.ViewModel.NewCustomerViewModel
+@*@model Vidly.Models.Customer*@
+
 @{
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,8 +11,8 @@
 @using (Html.BeginForm("Create", "Customer"))
 {
     <div class="form-group">
-        @Html.LabelFor(m=>m.Name)
-        @Html.TextBoxFor(m=> m.Name, new {@class="form-control"})
+        @Html.LabelFor(m=>m.Customer.Name)
+        @Html.TextBoxFor(m=> m.Customer.Name, new {@class="form-control"})
 
         @*new {@class="form-control"} is a bootstrap control to specify a class to have a good look*@
 
@@ -23,13 +25,18 @@
     <br/>
     <div class="form-group">
         <label for="Birthdate" id="BirthDate">Date of Birth</label>
-        @Html.TextBoxFor(m => m.BirthDate, new { @class= "form-control" })
+        @Html.TextBoxFor(m => m.Customer.BirthDate, new { @class= "form-control" })
     </div>
     <br/>
+    <div class="form-group">
+        @Html.LabelFor(m=>m.Customer.MembershipTypeID)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeID,new SelectList(Model.MembershipType,"Id","Name"),"Select Membership Type", new { @class = "form-control" })
+    </div>
     @*<div class="form-group">
         @Html.LabelFor(m => m.IsSuscribedToNewsLetter)
         @Html.CheckBoxFor(m => m.IsSuscribedToNewsLetter, new { @class = "form-control"})
     </div>*@
+    <br/>
     <div class="checkbox">
        <label>
            <input type="checkbox" />Is Suscribed to newsLetter

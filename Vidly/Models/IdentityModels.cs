@@ -24,6 +24,9 @@ namespace Vidly.Models
         public DbSet<Customer> Customers { get; set; }
 
         public DbSet<Movie> Movies { get; set; }
+
+        //Added membershiptype so can fetch values from Database so linking with entity framework DbContext
+        public DbSet<MembershipType> MembershipTypes { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
