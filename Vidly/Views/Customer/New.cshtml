@@ -15,10 +15,15 @@
         @*new {@class="form-control"} is a bootstrap control to specify a class to have a good look*@
 
     </div>
-    <br/>
-    <div class="form-group">
+    
+    @*<div class="form-group">
         @Html.LabelFor(m => m.BirthDate)
         @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control"})
+    </div>*@
+    <br/>
+    <div class="form-group">
+        <label for="Birthdate" id="BirthDate">Date of Birth</label>
+        @Html.TextBoxFor(m => m.BirthDate, new { @class= "form-control" })
     </div>
     <br/>
     @*<div class="form-group">
@@ -28,6 +33,7 @@
     <div class="checkbox">
        <label>
            <input type="checkbox" />Is Suscribed to newsLetter
+           @*@Html.CheckBoxFor(m=>m.IsSuscribedToNewsLetter,new  { @class="form-control"})*@
        </label>
     </div>
 }
