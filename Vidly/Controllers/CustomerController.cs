@@ -71,11 +71,29 @@ namespace Vidly.Controllers
         //we are getting NewCustomerViewModel in the input and will be Http post call
         //but we want to add customer for now, MVC framework is smart enough to bind the data
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public ActionResult Save(Customer customer)
         {
+            #region To Add new Customer old code
             //to add customer we first need to add that to DbContext
-            _context.Customers.Add(customer);//not written to DB yet it is in memory still
+            //_context.Customers.Add(customer);//not written to DB yet it is in memory still
+            //_context.SaveChanges();
+            #endregion
+            #region To add or Update customer
+            if(customer.Id==0)//means new customer
+            {
+                _context.Customers.Add(customer);
+            }
+            else
+            {
+                //need to update customer in database
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+                customerInDb.Name = customer.Name;
+                customerInDb.BirthDate = customer.BirthDate;
+                customerInDb.MembershipTypeID = customer.MembershipTypeID;
+                customerInDb.IsSuscribedToNewsLetter = customer.IsSuscribedToNewsLetter;
+            }
             _context.SaveChanges();
+            #endregion
             return RedirectToAction("Index", "Customer");
         }
 
