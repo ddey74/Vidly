@@ -4,6 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Movies</h2>
+<p>
+    @Html.ActionLink("New Movie", "New", "Movie", null, new { @class="btn btn-primary"})
+</p>
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -15,7 +18,7 @@
         {
             <tr>
                 @*<td>@movie.Name</td>*@
-                <td>@Html.ActionLink(movie.Name,"Details","Movie", new { id=movie.Id},null)</td>
+                <td>@Html.ActionLink(movie.Name,"Edit","Movie", new { id=movie.Id},null)</td>
                 <td>@movie.Genre.Name</td>
             </tr>
         }

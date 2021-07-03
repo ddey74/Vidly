@@ -25,6 +25,8 @@ namespace Vidly.Models
 
         public DbSet<Movie> Movies { get; set; }
 
+        public DbSet<Genre> Genres { get; set; }
+
         //Added membershiptype so can fetch values from Database so linking with entity framework DbContext
         public DbSet<MembershipType> MembershipTypes { get; set; }
         public ApplicationDbContext()

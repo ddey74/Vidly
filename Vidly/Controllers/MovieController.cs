@@ -50,9 +50,22 @@ namespace Vidly.Controllers
 
 
         }
+
+        //call from Index view change for particular movie
         public ActionResult Edit(int id)
         {
-            return Content("id " + id);
+            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            var viewmodel = new MovieFormViewModel()
+            {
+                Movie = movie,
+                Genres = _context.Genres.ToList()
+            };
+            //return Content("id " + id);old code
+            return View("MovieForm", viewmodel);
         }
         // this will be called /movies,  as other parameters are optional
         //public ActionResult Index(int? PageIndex,string sortBy)
@@ -88,6 +101,45 @@ namespace Vidly.Controllers
             }
             return View(movie);
         }
+
+        public ActionResult New()
+        {
+            var genre = _context.Genres.ToList();
+            var viewmodel = new MovieFormViewModel()
+            {
+                Genres=genre
+            };
+
+            return View("MovieForm",viewmodel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if(movie.Id==0)
+            {
+                movie.DateAdded = DateTime.Now;
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+                movieInDb.Name = movie.Name;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.NumberInStock = movie.NumberInStock;
+                movieInDb.GenreId = movie.GenreId;
+            }
+            try {
+                _context.SaveChanges();
+            }catch(Exception e)
+            {
+                string s = e.StackTrace;
+            }
+            return RedirectToAction("Index", "Movie");
+        }
+
+        
+       
 
         private IEnumerable<Movie> GetMovies()
         {

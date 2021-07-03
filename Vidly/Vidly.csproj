@@ -223,6 +223,10 @@
     <Compile Include="Migrations\202106301550113_AddDataIntoGenre.Designer.cs">
       <DependentUpon>202106301550113_AddDataIntoGenre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107030745127_ChangesAddedInMovieModelClass.cs" />
+    <Compile Include="Migrations\202107030745127_ChangesAddedInMovieModelClass.Designer.cs">
+      <DependentUpon>202107030745127_ChangesAddedInMovieModelClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -233,6 +237,7 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\MovieFormViewModel.cs" />
     <Compile Include="ViewModel\NewCustomerViewModel.cs" />
     <Compile Include="ViewModel\RandomMovieViewModel.cs" />
   </ItemGroup>
@@ -301,6 +306,7 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Movie\Details.cshtml" />
     <Content Include="Views\Customer\CustomerForm.cshtml" />
+    <Content Include="Views\Movie\MovieForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -349,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106301550113_AddDataIntoGenre.resx">
       <DependentUpon>202106301550113_AddDataIntoGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107030745127_ChangesAddedInMovieModelClass.resx">
+      <DependentUpon>202107030745127_ChangesAddedInMovieModelClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
