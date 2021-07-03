@@ -25,7 +25,7 @@
     <br/>
     <div class="form-group">
         <label for="Birthdate" id="BirthDate">Date of Birth</label>
-        @Html.TextBoxFor(m => m.Customer.BirthDate, new { @class= "form-control" })
+        @Html.TextBoxFor(m => m.Customer.BirthDate, "{0:d MM yyyy}",new { @class= "form-control" })
     </div>
     <br/>
     <div class="form-group">
