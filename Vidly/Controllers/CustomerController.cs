@@ -60,7 +60,9 @@ namespace Vidly.Controllers
             {
                 MembershipType = membershipTypes
             };
-            return View(viewModel);//Passing this view model to view so View of New controller will change
+            //return View(viewModel);//Passing this view model to view so View of New controller will change
+            return View("CustomerForm", viewModel);//as after edit controller we are redicting 
+                                                    //to New() view which does not feel Promising so renamed New.schtml to CustomerForm.schtml
         }
 
 
@@ -75,6 +77,29 @@ namespace Vidly.Controllers
             _context.Customers.Add(customer);//not written to DB yet it is in memory still
             _context.SaveChanges();
             return RedirectToAction("Index", "Customer");
+        }
+
+        //From index view when we click on particular customer we will edit that customer so we will fill the details to New() action view
+        //Edit action will fill the details from db and return to New action view
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            //View of New() accepts viewmodel so created viewmodel object
+            var viewmodel = new NewCustomerViewModel()
+            {
+                Customer = customer,
+                MembershipType = _context.MembershipTypes.ToList()//as we have to return all membership type again
+
+            };
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            //return View("New",viewmodel);
+            //Now after editiing we are redirecting to New() action view which does not feel so promissing
+            //so rename New.schtml to CustomerForm.scthml
+            //Make changes in the New() Action also
+            return View("CustomerForm", viewmodel);
         }
 
         //This method will return all the Customers

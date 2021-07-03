@@ -33,7 +33,8 @@ else
             {
                 <tr>
                     @*means we are redirecting from this page to Details Action with Id of the customer making name of customer as action link*@
-                    <td>@Html.ActionLink(customer.Name, "Details", "Customer", new { id = customer.Id }, null)</td>
+                    @*<td>@Html.ActionLink(customer.Name, "Details", "Customer", new { id = customer.Id }, null)</td> we want to redirect ourself to Edit Action*@
+                    <td>@Html.ActionLink(customer.Name, "Edit", "Customer", new { id = customer.Id }, null)</td>
                     <td>@customer.MembershipType.DiscountRate</td>
                     @*membershiptype not visible as by default entity framework loads customer object not related objects*@
                 </tr>
