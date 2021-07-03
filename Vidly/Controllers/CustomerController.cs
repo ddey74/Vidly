@@ -63,6 +63,20 @@ namespace Vidly.Controllers
             return View(viewModel);//Passing this view model to view so View of New controller will change
         }
 
+
+
+        //Form New() view after filling all details will search fro the Crete Actionmethod
+        //we are getting NewCustomerViewModel in the input and will be Http post call
+        //but we want to add customer for now, MVC framework is smart enough to bind the data
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            //to add customer we first need to add that to DbContext
+            _context.Customers.Add(customer);//not written to DB yet it is in memory still
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Customer");
+        }
+
         //This method will return all the Customers
         private IEnumerable<Customer> GetCustomers()
         {
