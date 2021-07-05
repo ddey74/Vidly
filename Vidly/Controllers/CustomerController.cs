@@ -78,8 +78,20 @@ namespace Vidly.Controllers
             //_context.Customers.Add(customer);//not written to DB yet it is in memory still
             //_context.SaveChanges();
             #endregion
+            #region Cheack if model not valid then return same view
+            if (!ModelState.IsValid)//Means the model which is passed is not valid, and no update or add operation is performed
+            {
+                var viewmodel = new NewCustomerViewModel
+                {
+                    Customer = customer,
+                    MembershipType = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm",viewmodel);
+            }
+            #endregion
+
             #region To add or Update customer
-            if(customer.Id==0)//means new customer
+            if (customer.Id==0)//means new customer
             {
                 _context.Customers.Add(customer);
             }

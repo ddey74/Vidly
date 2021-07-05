@@ -12,44 +12,49 @@
 @using (Html.BeginForm("Save", "Customer"))
 {
     <div class="form-group">
-        @Html.LabelFor(m=>m.Customer.Name)
-        @Html.TextBoxFor(m=> m.Customer.Name, new {@class="form-control"})
+        @Html.LabelFor(m => m.Customer.Name)
+        @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+
+        @*adding validation to the form items*@
+        @Html.ValidationMessageFor(m => m.Customer.Name)
 
         @*new {@class="form-control"} is a bootstrap control to specify a class to have a good look*@
 
     </div>
-    
+
     @*<div class="form-group">
-        @Html.LabelFor(m => m.BirthDate)
-        @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control"})
-    </div>*@
-    <br/>
+            @Html.LabelFor(m => m.BirthDate)
+            @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control"})
+        </div>*@
+    <br />
     <div class="form-group">
         <label for="Birthdate" id="BirthDate">Date of Birth</label>
-        @Html.TextBoxFor(m => m.Customer.BirthDate, "{0:d MM yyyy}",new { @class= "form-control" })
+        @Html.TextBoxFor(m => m.Customer.BirthDate, "{0:d MM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.BirthDate)
     </div>
-    <br/>
+    <br />
     <div class="form-group">
-        @Html.LabelFor(m=>m.Customer.MembershipTypeID)
-        @Html.DropDownListFor(m => m.Customer.MembershipTypeID,new SelectList(Model.MembershipType,"Id","Name"),"Select Membership Type", new { @class = "form-control" })
+        @Html.LabelFor(m => m.Customer.MembershipTypeID)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeID, new SelectList(Model.MembershipType, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=>m.Customer.MembershipTypeID)
     </div>
     @*<div class="form-group">
-        @Html.LabelFor(m => m.IsSuscribedToNewsLetter)
-        @Html.CheckBoxFor(m => m.IsSuscribedToNewsLetter, new { @class = "form-control"})
-        This is the old code of checkbox but stylying was not good
-    </div>*@
-    <br/>
+            @Html.LabelFor(m => m.IsSuscribedToNewsLetter)
+            @Html.CheckBoxFor(m => m.IsSuscribedToNewsLetter, new { @class = "form-control"})
+            This is the old code of checkbox but stylying was not good
+        </div>*@
+    <br />
     <div class="checkbox">
-       <label>
-           @*<input type="checkbox" />Is Suscribed to newsLetter*@
-           @Html.CheckBoxFor(m=>m.Customer.IsSuscribedToNewsLetter) Is Suscribed for newsLetter ?
-           @*new { @class = "form-control"} this anonymous object was creating problem*@
-       </label>
+        <label>
+            @*<input type="checkbox" />Is Suscribed to newsLetter*@
+            @Html.CheckBoxFor(m => m.Customer.IsSuscribedToNewsLetter) Is Suscribed for newsLetter ?
+            @*new { @class = "form-control"} this anonymous object was creating problem*@
+        </label>
     </div>
-    <br/>
+    <br />
     //We are relying on customer ID to edit the customer that we also need to pass
     //we are passing ID as hidden field
-    @Html.HiddenFor(m=>m.Customer.Id)
+    @Html.HiddenFor(m => m.Customer.Id)
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
