@@ -60,4 +60,9 @@
     @Html.HiddenFor(m => m.Customer.Id)
     <button type="submit" class="btn btn-primary">Save</button>
 }
+@*Adding to enable client side validation*@
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+@*we passed address of JQuery bundle*@
+    }
 
