@@ -16,12 +16,18 @@ namespace Vidly.Models
             //we will apply [Min18YearsIfAMember] attribute on the model property
             // ValidationContext.ObjectInstance this gives us the containing class on which this validationattribute is applied
             var customer = (Customer)validationContext.ObjectInstance;
-            if(customer.MembershipTypeID == 0 || customer.MembershipTypeID==1)//0 means we do not selected any membership type and for that no error should come
+            //if(customer.MembershipTypeID == 0 || customer.MembershipTypeID==1)//0 means we do not selected any membership type and for that no error should come
+            //{//0 and 1 are called magic numbers as in future no one knows how code is going to be change and it will business logic
+            //    //means pay as you go customer
+            //    return ValidationResult.Success;
+            //}
+
+            if (customer.MembershipTypeID == MembershipType.UnKnown || customer.MembershipTypeID == MembershipType.PayAsYouGo)
             {
                 //means pay as you go customer
                 return ValidationResult.Success;
             }
-            if(customer.BirthDate==null)
+            if (customer.BirthDate==null)
             {
                 return new ValidationResult("Birthdate is required");
             }

@@ -14,8 +14,11 @@ namespace Vidly.Models
         public short SignUpFee { get; set; }
         public byte DurationInMonth { get; set; }
         public byte DiscountRate { get; set; }
-       
+
 
         //Need to have an assosciation with customer class
+
+        public static readonly byte UnKnown = 0;
+        public static readonly byte PayAsYouGo = 1;
     }
 }
