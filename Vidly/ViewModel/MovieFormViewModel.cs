@@ -9,19 +9,10 @@ namespace Vidly.ViewModel
 {
     public class MovieFormViewModel
     {
-        public MovieFormViewModel()
-        {
-            Id = 0;
-        }
+        
 
-        public MovieFormViewModel(Movie movie)
-        {
-            Id = movie.Id;
-            Name = movie.Name;
-            ReleaseDate = movie.ReleaseDate;
-            NumberInStock = movie.NumberInStock;
-            GenreId = movie.GenreId;
-        }
+        //Insted of having Movie we will define a pure model with the required fields
+
         public IEnumerable<Genre> Genres { get; set; }
         //public Movie Movie { get; set; }
         public int? Id { get; set; }
@@ -37,7 +28,8 @@ namespace Vidly.ViewModel
 
         [Display(Name ="Release Date")]
         [Required]
-        public DateTime? ReleaseDate { get; set; }
+        public DateTime? ReleaseDate { get; set; }//we will be getting initial values when the movie form is loaded
+                                                    //so to avoid default loading in form like 1/1/0001  we make datefield nullable
 
 
         [Display(Name = "Number in Stock")]
@@ -56,6 +48,20 @@ namespace Vidly.ViewModel
                 return Id != 0 ? "Edit Movie" : "New Movie";
 
             }
+        }
+
+        public MovieFormViewModel()
+        {
+            Id = 0;
+        }
+
+        public MovieFormViewModel(Movie movie)
+        {
+            Id = movie.Id;
+            Name = movie.Name;
+            ReleaseDate = movie.ReleaseDate;
+            NumberInStock = movie.NumberInStock;
+            GenreId = movie.GenreId;
         }
     }
 }
