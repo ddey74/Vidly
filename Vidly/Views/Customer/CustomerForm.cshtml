@@ -12,7 +12,8 @@
 @using (Html.BeginForm("Save", "Customer"))
 {
     //We can have consolidated errors on the top of the form
-    @Html.ValidationSummary()
+    @Html.ValidationSummary(true,"Please fix the below issue")
+    //we can have a consolidated issue insted of showing every error we can show consolidated message
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
