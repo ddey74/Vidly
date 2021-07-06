@@ -73,6 +73,7 @@ namespace Vidly.Controllers
         //we are getting NewCustomerViewModel in the input and will be Http post call
         //but we want to add customer for now, MVC framework is smart enough to bind the data
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             #region To Add new Customer old code
