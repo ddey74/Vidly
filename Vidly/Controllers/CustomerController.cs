@@ -58,6 +58,8 @@ namespace Vidly.Controllers
 
             var viewModel = new NewCustomerViewModel()
             {
+                Customer=new Customer(),//we need to add this or in validation summary we can see Customer ID not mentioned, by doing this customer will be initilized to default value
+                //we can see in hidden field there is no value
                 MembershipType = membershipTypes
             };
             //return View(viewModel);//Passing this view model to view so View of New controller will change

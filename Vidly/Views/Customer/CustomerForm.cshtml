@@ -11,6 +11,8 @@
 @*we can see target action is crete so changing it to save so we can both add or update using the same form*@
 @using (Html.BeginForm("Save", "Customer"))
 {
+    //We can have consolidated errors on the top of the form
+    @Html.ValidationSummary()
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
