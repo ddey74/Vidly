@@ -20,6 +20,7 @@ namespace Vidly.Models
         [Display(Name="Membership Type")]
         public byte MembershipTypeID { get; set; }//will be used as a forign key for MembershipType Id property
 
+        [Min18YearsIfAMember]
         public DateTime? BirthDate { get; set; }
     }
 }
