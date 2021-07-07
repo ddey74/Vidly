@@ -21,5 +21,17 @@ namespace Vidly.Controllers.API
             return _context.Customers.ToList();
         
         }
+
+        //GET: /api/customers/1   to get single customer
+        public Customer GetCustomer(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            if(customer==null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            return customer;
+        }
     }
 }
