@@ -47,5 +47,33 @@ namespace Vidly.Controllers.API
 
             return customer;
         }
+
+        //PUT: /api/customers/1
+        [HttpPut]
+        public void UpdateCustomer(int id,Customer customer)
+        {
+            //id and customer object we are getting from the HTTP request body
+            if (!ModelState.IsValid)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
+            if(customerInDb==null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            #region Updating Db customer object
+
+            customerInDb.Name = customer.Name;
+            customerInDb.BirthDate = customer.BirthDate;
+            customerInDb.IsSuscribedToNewsLetter = customer.IsSuscribedToNewsLetter;
+            customerInDb.MembershipTypeID = customer.MembershipTypeID;
+
+            #endregion
+
+            _context.SaveChanges();
+        }
     }
 }
