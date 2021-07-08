@@ -17,6 +17,15 @@ namespace Vidly.Controllers.API
         {
             _context = new ApplicationDbContext();
         }
+
+        
+        
+        //IHttpActionResult we will return and can have many helper methods 
+        //so insted of raising exception we can give message using those helper method
+
+
+
+
         //GET: /api/customers
         public IEnumerable<CustomerDto> GetCustomer()
         {
@@ -24,8 +33,12 @@ namespace Vidly.Controllers.API
         
         }
 
+
+
+
+
         //GET: /api/customers/1   to get single customer
-        public CustomerDto GetCustomer(int id)
+        public IHttpActionResult GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
             if(customer==null)
@@ -33,16 +46,22 @@ namespace Vidly.Controllers.API
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            return Mapper.Map<Customer,CustomerDto>(customer);
+            return Ok(Mapper.Map<Customer,CustomerDto>(customer));
         }
+
+
+       
+
+
 
         //POST: /api/Customers
         [HttpPost]
-        public CustomerDto CreateCustomer(CustomerDto customerDto)
-        {
+        public IHttpActionResult CreateCustomer(CustomerDto customerDto)
+        {//changing retuen type from CustomerDto to IHttpActionResult
             if(!ModelState.IsValid)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                //throw new HttpResponseException(HttpStatusCode.BadRequest);
+                BadRequest();//insted of throwing exception we are using helper method of IHttpActionResult
             }
             var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
             _context.Customers.Add(customer);
@@ -50,8 +69,12 @@ namespace Vidly.Controllers.API
 
             customerDto.Id = customer.Id;
 
-            return customerDto;
+            return Created(new Uri(Request.RequestUri+"/"+customer.Id),customerDto);//customerDto;
         }
+
+
+
+
 
         //PUT: /api/customers/1
         [HttpPut]
@@ -81,6 +104,10 @@ namespace Vidly.Controllers.API
             _context.SaveChanges();
         }
 
+
+
+
+
         //DELETE: /api/customer/1
         [HttpDelete]
         public void DeleteCustomer(int id)
@@ -94,5 +121,8 @@ namespace Vidly.Controllers.API
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
         }
+
+
+
     }
 }
