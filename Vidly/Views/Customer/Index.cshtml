@@ -22,10 +22,12 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover" id="customers">
         <thead>
             <tr>
                 <th>Customer</th>
+                <th>Membership Type</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -35,11 +37,30 @@ else
                     @*means we are redirecting from this page to Details Action with Id of the customer making name of customer as action link*@
                     @*<td>@Html.ActionLink(customer.Name, "Details", "Customer", new { id = customer.Id }, null)</td> we want to redirect ourself to Edit Action*@
                     <td>@Html.ActionLink(customer.Name, "Edit", "Customer", new { id = customer.Id }, null)</td>
-                    <td>@customer.MembershipType.DiscountRate</td>
+                    <td>@customer.MembershipType.Name</td>
                     @*membershiptype not visible as by default entity framework loads customer object not related objects*@
+                    <td>
+                        <button class="btn-link js-delete">Delete</button>
+                        @*js-delete is the second class*@
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 }
+@section scripts
+{
+  
+<script>
 
+    $(document).ready(function(){
+        $("#customers.js-delete").on("click",
+            function(){
+
+                 confirm("Are you sure you want to delete this Customer");
+        });
+    });
+
+</script>    
+    
+}
