@@ -34,9 +34,11 @@ namespace Vidly
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-lumen.css",
-                      "~/Content/site.css",
-                       "~/content/datatables/css/datatables.bootstrap.css",//));
-                       "~/Content/bootstrap.min.css"));//added new to resolve the package dependeny as delete button was not working)
+                      "~/Content/bootstrap-theme.css",
+                      "~/Content/bootstrap.min.css",
+                       "~/content/datatables/css/datatables.bootstrap.css",
+                       "~/Content/site.css"
+                       ));//added new to resolve the package dependeny as delete button was not working)
         }
     }
 }
