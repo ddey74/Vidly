@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Vidly.Models.Customer>
-@*
+﻿@*
     Note: I've set the model for this view to IEnumerable<Customer>
     .
     This is a simple interface implemented by the list class. Since
@@ -16,12 +15,7 @@
 }
 
 <h2>Customers</h2>
-@if (!Model.Any())
-{
-    <p>We don't have any customers yet.</p>
-}
-else
-{
+
     <table class="table table-bordered table-hover" id="customers">
         <thead>
             <tr>
@@ -31,35 +25,45 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var customer in Model)
-            {
-                <tr>
-                    @*means we are redirecting from this page to Details Action with Id of the customer making name of customer as action link*@
-                    @*<td>@Html.ActionLink(customer.Name, "Details", "Customer", new { id = customer.Id }, null)</td> we want to redirect ourself to Edit Action*@
-                    <td>@Html.ActionLink(customer.Name, "Edit", "Customer", new { id = customer.Id }, null)</td>
-                    <td>@customer.MembershipType.Name</td>
-                    @*membershiptype not visible as by default entity framework loads customer object not related objects*@
-                    <td>
-                        <button data-customer-id="@customer.Id" class="btn btn-primary js-delete">Delete</button>
-                        @*js-delete is the second class*@
-                    </td>
-                </tr>
-            }
+           @*we are loading this table from API call*@
         </tbody>
     </table>
-}
+
 @section scripts
 {
- <script>
-    $(document).ready(function(){
-     $("#customers").DataTable();
-        $("#customers").on("click",".js-delete",function(){
-            var button=$(this);
 
-               bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
+ <script>
+     $(document).ready(function () {
+            $("#customers").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function(data, type, customer) {
+                            return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "id",
+                        render: function(data) {
+                            return "<button class='btn btn-primary js-delete' data-customer-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+         $("#customers").on("click", ".js-delete", function () { var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
                     if (result) {
                         $.ajax({
-                            url: "/api/customers/" + button.attr("data-customer-id"),
+                            url: "/api/Customers/" + button.attr("data-customer-id"),
                             method: "DELETE",
                             success: function () {
                                 button.parents("tr").remove();
@@ -67,8 +71,8 @@ else
                         });
                     }
                 });
+            });
         });
-    });
 </script>    
     
 }

@@ -13,10 +13,10 @@ namespace Vidly
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap.js",
-                        "~/Scripts/bootbox.js",
+                        "~/scripts/bootbox.js",
                         "~/Scripts/respond.js",
-                        "~/Scripts/datatables/jquery.datatables.js",//bundle for datatable
-                        "~/Scripts/datatables/datatables.bootstrap.js"//bundle for datatable
+                        "~/scripts/datatables/jquery.datatables.js",//bundle for datatable
+                        "~/scripts/datatables/datatables.bootstrap.js"//bundle for datatable
                         ));//consolidating js and bootstrap under one bundle called lib
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -34,8 +34,9 @@ namespace Vidly
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-lumen.css",
-                       "~/Content/datatables/css/datatables.bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                       "~/content/datatables/css/datatables.bootstrap.css",//));
+                       "~/Content/bootstrap.min.css"));//added new to resolve the package dependeny as delete button was not working)
         }
     }
 }

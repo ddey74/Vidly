@@ -29,9 +29,12 @@ namespace Vidly.Controllers
         {
             //var customers = GetCustomers();
             //var customer = _context.Customers.ToList();//but we want to load membershiptype data as well
+
             //Eager loading
-            var customer = _context.Customers.Include(c => c.MembershipType).ToList();//Include() method is in sytem.data.entity
-            return View(customer);
+            //var customer = _context.Customers.Include(c => c.MembershipType).ToList();//Include() method is in sytem.data.entity
+
+            //Now we are loading the table from API call from AJAX section of view so no need to pass customer to the view
+            return View();
         }
 
         public ActionResult Details(int id)
